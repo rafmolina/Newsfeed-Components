@@ -93,7 +93,52 @@ const data = [
   Step 1: Write a component called 'articleMaker' to create an article.
   Your component is a function that takes an article object as its only argument,
   and returns a DOM node looking like the one below:
+*/
+//article
+function articleMaker (artObj){
+  const article = document.createElement('div')
+  article.classList.add('article')
+  //title
+  const title = document.createElement('h2')
+  title.textContent = artObj.title
+  //date
+  const date = document.createElement('p')
+  date.classList.add('date')
+  date.textContent = artObj.date
+  // three separate paragraph elements
+  const paraOne = document.createElement('p')
+  paraOne.textContent = artObj.firstParagraph
 
+  const paraTwo = document.createElement('p')
+  paraTwo.textContent = artObj.secondParagraph
+
+  const paraThree = document.createElement('p')
+  paraThree.textContent = artObj.thirdParagraph
+  // span
+  const span = document.createElement('span')
+  span.classList.add('expandButton')
+  span.textContent = '+'
+  span.addEventListener('click', () => {
+    article.toggle('article-open')
+  })
+
+article.appendChild(title)
+article.appendChild(date)
+article.appendChild(paraOne)
+article.appendChild(paraTwo)
+article.appendChild(paraThree)
+
+return article;
+
+}
+
+const article = document.querySelector('.articles')
+data.forEach(item => {
+  const el = articleMaker(item)
+  article.appendChild(el)
+})
+ 
+/*
   <div class="article">
     <h2>{title of the article}</h2>
     <p class="date">{date of the article}</p>
